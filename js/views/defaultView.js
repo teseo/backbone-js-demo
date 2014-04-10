@@ -1,7 +1,11 @@
+/**
+ * Dummy template
+ * @author Javier Mellado <sol@javiermellado.com>
+ *
+ */
 define(
     ['jquery','lodash','backbone'],
-    function ($, _, Backbone){
-
+    function (){
         DefaultView = Backbone.View.extend({
             el: $('#container'),
             initialize: function (){

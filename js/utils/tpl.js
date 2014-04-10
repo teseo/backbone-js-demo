@@ -1,3 +1,10 @@
+/**
+ * Template render util
+ * this element will be the one in charge of template rendering
+ * @author Javier Mellado <sol@javiermellado.com>
+ *
+ */
+
 define(
     ['jquery'],
     function ($){
@@ -29,4 +36,3 @@ define(
         return tpl;
     }
 );
-

@@ -1,0 +1,15 @@
+<% _.each(videos, function(video) { %>
+<ul>
+	<li>URL: <a href="<%= video.get('url') %>" target="_blank">
+		<%= video.get('url') %>
+	</a></li>
+	<li>Title: <%= video.get('title') %></li>
+	<li>Channel Name: <%= video.get('channelTitle') %></li>
+	<li>Description: <%= video.get('description') %></li>
+	<li>
+		<a href="<%= video.get('url') %>" target="_blank">
+			<img src = "<%= video.get('thumbnail') %>">
+		</a>
+	</li>
+</ul>
+<% }); %>

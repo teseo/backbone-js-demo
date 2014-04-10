@@ -1,7 +1,12 @@
+/**
+ * main app file
+ * @author Javier Mellado <sol@javiermellado.com>
+ *
+ */
 require(
-    // Load the necessary elements to make the page works
-    ['jquery','lodash','backbone', 'views/facebookView', 'views/defaultView', 'views/youtubeView', 'utils/tpl'],
-    function($, _, Backbone, FacebookView, DefaultView, YoutubeView, tpl){
+    // Load the minium necessary elements to make the default page works
+    ['jquery','lodash','backbone', 'utils/tpl'],
+    function($, _, Backbone, tpl){
         MyRouter = Backbone.Router.extend({
             //set the routes of our one page site
             routes: {
@@ -12,22 +17,39 @@ require(
 
             //functionality of each page
             loadFacebook: function(){
-                new FacebookView();
+                //load Facebook view in a lazy way
+                require(['views/facebookView'], function(){
+                    //load Facebook template in a lazy way once the view is loaded
+                    tpl.loadTemplates(['facebook'], function(){
+                        new FacebookView();
+                    });
+                });
             },
 
             loadDefault: function(){
-                new DefaultView();
-            },
+                //load Default view and template in a lazy way
+                require(['views/defaultView'], function(){
+                    //load Default template in a lazy way once the view is loaded
+                    tpl.loadTemplates(['default'], function(){
+                        new DefaultView();
+                    });
+                });
 
+            },
             loadYoutube: function(){
-                new YoutubeView();
+                //load Youtube view in a lazy way
+                require(['views/youtubeView'], function(){
+                    //load Youtube template in a lazy way once the view is loaded
+                    tpl.loadTemplates(['youtube'], function(){
+                        new YoutubeView();
+                    });
+                });
+
             }
         });
-        //once templates are loaded, let's start the party
-        tpl.loadTemplates(['default', 'youtube', 'facebook'], function(){
-            var router = new MyRouter();
-            Backbone.history.start();
-        });
+        //let's start the party
+        new MyRouter();
+        Backbone.history.start();
     }
 );
 
