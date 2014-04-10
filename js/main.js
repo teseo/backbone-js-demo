@@ -1,3 +1,8 @@
+/**
+ * main app file
+ * @author Javier Mellado <sol@javiermellado.com>
+ *
+ */
 require(
     // Load the necessary elements to make the page works
     ['jquery','lodash','backbone', 'views/facebookView', 'views/defaultView', 'views/youtubeView', 'utils/tpl'],
@@ -24,7 +29,7 @@ require(
             }
         });
         //once templates are loaded, let's start the party
-        tpl.loadTemplates(['default', 'youtube', 'facebook'], function(){
+        tpl.loadTemplates(['default', 'youtube', 'facebook','youtubeSearchResult'], function(){
             var router = new MyRouter();
             Backbone.history.start();
         });
